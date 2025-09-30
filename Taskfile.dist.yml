@@ -1,0 +1,13 @@
+version: '3'
+
+tasks:
+  local:
+    desc: "run service locally (WARNING: uses current K8s context for access)"
+    env:
+      LOG_LEVEL: trace
+      LOG_FORMAT: human
+      PROVIDER_GCP_CREDS_JSON:
+        sh: cat ~/.config/gcloud/application_default_credentials.json
+    cmds:
+    - go build
+    - ./image-pull-creds serve

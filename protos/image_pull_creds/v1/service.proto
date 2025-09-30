@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package image_pull_creds.v1;
+
+message SetupImagePullCredsReqeust {
+  // Namespaces is the optional list of namespaces to synchronize. If not given all namespaces (minus things like
+  // kube-system) will be syncronized
+  repeated string namespaces = 1;
+}
+
+message SetupImagePUllCredsResponse {}
+
+service ImagePullCredsService {
+  rpc SetupImagePullCreds(SetupImagePullCredsReqeust) returns (SetupImagePUllCredsResponse);
+}
