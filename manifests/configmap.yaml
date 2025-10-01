@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: image-pull-creds-config
+data:
+  LOG_LEVEL: "${LOG_LEVEL}"
+  LOG_FORMAT: "${LOG_FORMAT}"
+
+  PROVIDER_TYPE: "${PROVIDER_TYPE}"
+  PROVIDER_GCP_REGISTRIES: "${PROVIDER_GCP_REGISTRIES}"

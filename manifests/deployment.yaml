@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-pull-creds
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-pull-creds
+  template:
+    metadata:
+      labels:
+        app: image-pull-creds
+    spec:
+      serviceAccountName: image-pull-creds
+      containers:
+      - name: controller
+        image: ghcr.io/nicjohnson145/image-pull-creds:latest
+        args:
+        - serve
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: image-pull-creds-config
+        - secretRef:
+            name: image-pull-creds-secrets
+        resources:
+          requests:
+            cpu: ${CPU_REQUEST:=100m}
+            memory: ${MEMORY_REQUEST:=150Mi}
+          limits:
+            cpu: ${CPU_LIMIT:=100m}
+            memory: ${MEMORY_LIMIT:=150Mi}

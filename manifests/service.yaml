@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-pull-creds
+spec:
+  selector:
+    app: image-pull-creds
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
